@@ -1,20 +1,16 @@
-import {
-  Body,
-  Controller,
-  Post,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
-import { CreateDTO } from './dto/create.dto';
+import { Controller, Get } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { BaseResponse } from 'src/_base/base.response';
 import { UserService } from './user.service';
 
-@Controller('user')
+@ApiTags('users')
+@Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
-  @UsePipes(ValidationPipe)
-  login(@Body() body: CreateDTO) {
-    this.userService.create(body);
+  @Get()
+  async get() {
+    const data = await this.userService.getUsers();
+    return new BaseResponse(data, 'Kullanıcılar başarıyla çekildi.', true);
   }
 }

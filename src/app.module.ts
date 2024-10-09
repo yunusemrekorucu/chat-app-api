@@ -1,14 +1,9 @@
-import { UserModule } from './modules/users/user.module';
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-  RequestMethod,
-} from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
-import { User } from './modules/users/user.entity';
 import { AuthMiddleware } from './middleware/auth.middleware';
+import { User } from './modules/users/user.entity';
+import { UserModule } from './modules/users/user.module';
 
 dotenv.config();
 

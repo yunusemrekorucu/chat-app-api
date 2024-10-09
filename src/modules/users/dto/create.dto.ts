@@ -1,10 +1,10 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
 
 export class CreateDTO {
-  @IsNotEmpty()
-  @IsString()
+  @IsNotEmpty({ message: 'İsim boş olamaz' })
+  @IsEmail({}, { message: 'Email alanı geçerli değil' })
   email: string;
-  @IsNotEmpty()
-  @IsString()
+  @IsNotEmpty({ message: 'Password boş olamaz' })
+  @MinLength(6, { message: 'Şifre 6 karakter`den az olamaz' })
   password: string;
 }
