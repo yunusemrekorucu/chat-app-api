@@ -16,4 +16,8 @@ export class UserService {
   async addUser(body: any) {
     return await this.userRepo.save(body);
   }
+
+  async findOne(body: any) {
+    return await this.userRepo.findOne({ where: body });
+  }
 }
